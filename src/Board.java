@@ -4,7 +4,8 @@ class Board {
 
     private final int width;
 
-    final boolean[] board;
+    private final boolean[] board;
+    private Stone stone;
 
     public Board(){
         board = new boolean[HEIGHT * WIDTH];
