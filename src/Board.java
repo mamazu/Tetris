@@ -1,5 +1,5 @@
 class Board {
-    public static final int HEIGHT = 40;
+    public static final int HEIGHT = 20;
     public static final int WIDTH = 10;
 
     private final int width;
@@ -37,6 +37,19 @@ class Board {
 
     private int index(int x, int y) {
         return y*width + x;
+    }
+
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append("\n+-------------------+");
+        for(int i = 0; i < board.length; i++){
+            if(i % width == 0)
+                result.append("\n|");
+            char filled = board[i] ? 'x' : ' ';
+            result.append(filled).append("|");
+        }
+        result.append("\n+-------------------+\n");
+        return result.toString();
     }
 }
 
