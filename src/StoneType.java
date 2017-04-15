@@ -1,8 +1,8 @@
-public class SteinTyp extends Stein{
+public class StoneType extends Stone {
 
 	private final boolean[][] Stein_ = new boolean[4][4];
 
-	public SteinTyp(int x){
+	public StoneType(int x){
 		switch(x){
 			case 0:		for(int i=0; i<4;i++)	Stein_[i][0] = true; break;
 			case 1:		Stein_[0][0] = true;	for(int i=0; i<= 2; i++) Stein_[0][i] = true; break;
@@ -19,8 +19,7 @@ public class SteinTyp extends Stein{
 					Stein_[1][i] = true;
 				}
 				break;
-			case 5:
-				for 
+			case 5: break;
 			case 6:
 			default:	System.out.println("Fehler mit unbekanntem Fehlercode :D");
 		}
