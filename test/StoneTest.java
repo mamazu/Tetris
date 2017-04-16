@@ -86,4 +86,27 @@ public class StoneTest {
         Stone stone = new Stone(StoneTypes.T);
         assertEquals(stone.toString(), "T");
     }
+
+    @Test
+    void rotationSquare() {
+        Stone stone = new Stone(StoneTypes.SQUARE);
+        stone.rotate();
+        String shouldBe =
+                "__xx\n" +
+                        "__xx\n" +
+                        "____\n" +
+                        "____\n";
+        assertEquals(shouldBe, stone.getPattern());
+    }
+
+    @Test
+    void randomStone() {
+        Stone stone = new Stone();
+        assertTrue(stone.getPattern().contains("x"));
+    }
+
+    @Test
+    void emptyStoneType() {
+        assertEquals(StoneType.toString(null), "");
+    }
 }
