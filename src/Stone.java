@@ -16,8 +16,8 @@ public class Stone{
 		boolean[][] newpattern = new boolean[4][4];
 		for (int x = 0; x < pattern.length; x++) {
 			for(int y = 0; y < pattern[x].length; y++)
-				newpattern[3-y][x] = pattern[x][y];
-		}
+                newpattern[x][3 - y] = pattern[y][x];
+        }
 		pattern = newpattern;
 	}
 
