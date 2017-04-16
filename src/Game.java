@@ -4,11 +4,11 @@ public class Game{
 
 	public static void main(String[] args){
 		Game g = new Game();
-		if(args.length == 2 && args[1].equals("cli")){
+		if(args.length == 1 && args[0].equals("cli")){
 			System.out.print(g.board.toString());
+			System.out.println("Next stone is: " + g.next.toString());
 			return;
 		}
-		System.out.println("Next stone is: " + g.next.toString());
 		// Game with GUI
 	}
 }
