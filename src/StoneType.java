@@ -11,16 +11,13 @@ enum StoneTypes{
 	J // yellow
 }
 
-class StoneType {
+enum StoneType {
+	;
 
 	static StoneTypes random() {
 		final StoneTypes[] values = StoneTypes.values();
 		int pick = new Random().nextInt(values.length);
 		return values[pick];
-	}
-
-	public static boolean[][] getPattern(){
-		return getPattern(random());
 	}
 
 	public static boolean[][] getPattern(StoneTypes x){
@@ -35,15 +32,15 @@ class StoneType {
 				for(int i=0; i < 3; i++)
 					pattern[0][i] = true;
 				if(x == StoneTypes.L){
-					pattern[1][2] = true;
-				}else {
 					pattern[1][0] = true;
+				} else {
+					pattern[1][2] = true;
 				}
 				break;
 			case T:
-				for(int i=0; i<=2; i++)
+				for (int i = 0; i < 3; i++)
 					pattern[1][i] = true;
-				pattern[0][2] = true;
+				pattern[0][1] = true;
 				break;
 			case SQUARE:
 				for(int i=0; i<=1;i++){
@@ -62,9 +59,6 @@ class StoneType {
 					pattern[0][i] = true;
 					pattern[1][i+1] = true;
 				}
-				break;
-			default:
-				System.err.print("Invalid Stone type");
 		}
 		return pattern;
 	}
