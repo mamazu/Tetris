@@ -5,7 +5,6 @@ class Board {
     private final int width;
 
     private final boolean[] board;
-    private Stone stone;
 
     public Board(){
         this(WIDTH, HEIGHT);
