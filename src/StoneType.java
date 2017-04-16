@@ -13,7 +13,7 @@ enum StoneTypes{
 
 class StoneType {
 
-	private static StoneTypes random() {
+	static StoneTypes random() {
 		final StoneTypes[] values = StoneTypes.values();
 		int pick = new Random().nextInt(values.length);
 		return values[pick];
@@ -67,5 +67,11 @@ class StoneType {
 				System.err.print("Invalid Stone type");
 		}
 		return pattern;
+	}
+
+	public static String toString(StoneTypes type) {
+		if(type == null)
+			return "";
+		return type.toString();
 	}
 }

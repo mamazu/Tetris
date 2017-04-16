@@ -8,7 +8,7 @@ public class Game{
 			System.out.print(g.board.toString());
 			return;
 		}
-		System.out.println(g.next.toString());
+		System.out.println("Next stone is: " + g.next.toString());
 		// Game with GUI
 	}
 }
