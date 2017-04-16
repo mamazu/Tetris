@@ -1,12 +1,12 @@
 public class Stone{
 
-	public Stone stone;
+	private final boolean[][] pattern;
 
 	public Stone(){
-		 stone = new Stone((int) Math.random() * 7);
+		 pattern = StoneType.getPattern();
 	}
 
-	public Stone(int h){
-		stone = new Stone(h);
+	public Stone(StoneTypes type){
+		pattern = StoneType.getPattern(type);
 	}
 }
