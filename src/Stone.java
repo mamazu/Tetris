@@ -1,11 +1,10 @@
 public class Stone{
 
-	private boolean[][] pattern;
 	StoneTypes type;
+	private boolean[][] pattern;
 
 	public Stone(){
-		type = StoneType.random();
-		pattern = StoneType.getPattern(type);
+		this(StoneType.random());
 	}
 
 	public Stone(StoneTypes type){

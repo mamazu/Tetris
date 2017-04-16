@@ -8,8 +8,7 @@ class Board {
     private Stone stone;
 
     public Board(){
-        board = new boolean[HEIGHT * WIDTH];
-        width = WIDTH;
+        this(WIDTH, HEIGHT);
     }
 
     public Board(int width, int height){
