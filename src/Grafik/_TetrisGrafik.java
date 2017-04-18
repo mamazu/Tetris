@@ -12,17 +12,17 @@ public class _TetrisGrafik{
 			double Hoehe = 0.025;
 
 			//Fonts
-			Font Ueberschrift = new Font("SANS_SERIF", 0, 64);
+            Font Ueberschrift = new Font("SANS_SERIF", Font.PLAIN, 64);
 
 			//Erzeuge Menuepunkte
 			Grafik.setFont(Ueberschrift);
 			Grafik.text(0.5, 0.9, "Tetris", 0);		//x,y,Text,deg
 			//Grafik.line(0.25, 0.25, 0.75, 0.75);
-			Grafik.setPenColor(Draw.GREEN);
+            Grafik.setFont();
+            Grafik.setPenColor(Draw.GREEN);
 			Grafik.filledRectangle(0.5, 0.75, Breite, Hoehe);
 			Grafik.setPenColor();
 			Grafik.rectangle(0.5, 0.75, Breite, Hoehe);
-			Grafik.setFont();
 			Grafik.text(0.5, 0.75, "Spielen", 0);
 			Grafik.rectangle(0.5, 0.65, Breite, Hoehe);
 			Grafik.text(0.5, 0.65, "Bestenliste");
@@ -49,7 +49,6 @@ public class _TetrisGrafik{
 
 						Grafik.setPenColor();
 						Grafik.rectangle(0.5, 0.75, Breite, Hoehe);
-						Grafik.setFont();
 						Grafik.text(0.5, 0.75, "Spielen", 0);
 						Grafik.rectangle(0.5, 0.65, Breite, Hoehe);
 						Grafik.text(0.5, 0.65, "Bestenliste");
@@ -75,7 +74,6 @@ public class _TetrisGrafik{
 						
 						Grafik.setPenColor();
 						Grafik.rectangle(0.5, 0.75, Breite, Hoehe);
-						Grafik.setFont();
 						Grafik.text(0.5, 0.75, "Spielen", 0);
 						Grafik.rectangle(0.5, 0.65, Breite, Hoehe);
 						Grafik.text(0.5, 0.65, "Bestenliste");
@@ -99,7 +97,6 @@ public class _TetrisGrafik{
 						
 						Grafik.setPenColor();
 						Grafik.rectangle(0.5, 0.75, Breite, Hoehe);
-						Grafik.setFont();
 						Grafik.text(0.5, 0.75, "Spielen", 0);
 						Grafik.rectangle(0.5, 0.65, Breite, Hoehe);
 						Grafik.text(0.5, 0.65, "Bestenliste");
@@ -123,7 +120,6 @@ public class _TetrisGrafik{
 						
 						Grafik.setPenColor();
 						Grafik.rectangle(0.5, 0.75, Breite, Hoehe);
-						Grafik.setFont();
 						Grafik.text(0.5, 0.75, "Spielen", 0);
 						Grafik.rectangle(0.5, 0.65, Breite, Hoehe);
 						Grafik.text(0.5, 0.65, "Bestenliste");
@@ -147,7 +143,6 @@ public class _TetrisGrafik{
 						
 						Grafik.setPenColor();
 						Grafik.rectangle(0.5, 0.75, Breite, Hoehe);
-						Grafik.setFont();
 						Grafik.text(0.5, 0.75, "Spielen", 0);
 						Grafik.rectangle(0.5, 0.65, Breite, Hoehe);
 						Grafik.text(0.5, 0.65, "Bestenliste");
