@@ -1,20 +1,32 @@
+package tools;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+
 public class FileHandler{
 	private ArrayList<String> content = new ArrayList<String>();
 
 	public FileHandler(String filename){
+		Path filepath = new File(filename).toPath();
 		try{
-			BufferedReader br = new BufferedReader(new Filereader(filename));
-		}catch(Execption e)
-			return;
+			Files.lines(filepath).forEach(s -> content.add(s));
+		} catch (AccessDeniedException e) {
+			System.err.println("Could not access file: " + filepath);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		load(br)
 	}
 
-	private void load(BufferedReader br){};
+	public String[] getContent() {
+		return content.toArray(new String[content.size()]);
+	}
 
-	public String[] getContent(){ return content; }
 	public void appendContent(String content){
-		this.content.append(content);
+		this.content.add(content);
 	}
 
 	public int getLineCount(){ return content.size(); }
