@@ -13,13 +13,24 @@ public class Game{
         // Game with GUI
 	}
 
-    public Stone next() {
+    private Stone next() {
         Stone next = this.next;
         this.next = new Stone();
         return next;
     }
 
+    public void control(int direction){
+	    board.control(direction);
+    }
+
     public Stone getNext() {
         return next;
+    }
+
+    public void update(){
+	    board.update();
+	    if(board.hasCollided()){
+	        board.setNext(next());
+        }
     }
 }

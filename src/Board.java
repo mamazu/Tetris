@@ -1,3 +1,5 @@
+import java.awt.*;
+
 class Board {
     public static final int HEIGHT = 20;
     public static final int WIDTH = 10;
@@ -5,6 +7,8 @@ class Board {
     private final int width;
 
     private final boolean[] board;
+    private Stone next;
+    private Point movement = new Point(0, 1);
 
     public Board() {
         this(WIDTH, HEIGHT);
@@ -43,6 +47,14 @@ class Board {
         }
         result.append("\n+-------------------+\n");
         return result.toString();
+    }
+
+    public void setNext(Stone next) {
+        this.next = next;
+    }
+
+    public boolean hasCollided() {
+        return next == null;
     }
 }
 
