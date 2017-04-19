@@ -7,7 +7,7 @@ public class Game{
 		if(args.length == 1 && args[0].equals("cli")){
 			System.out.print(g.board);
             System.out.println("Next stone is: " + g.getNext());
-            System.out.println("Next pattern is: \n" + g.getNext().getPattern());
+            System.out.println("Next pattern is: \n" + g.getNext().getPatternString());
             return;
         }
         // Game with GUI

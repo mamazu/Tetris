@@ -61,8 +61,12 @@ class Board {
         return false;
     }
 
-    private void setValue(int x, int y, boolean value) {
-        board[index(x, y)] = value;
+    private int index(Point position) {
+        return index(position.x, position.y);
+    }
+
+    public boolean getValue(int x, int y) {
+        return board[index(x, y)];
     }
 
     private int index(int x, int y) {
