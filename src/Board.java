@@ -76,6 +76,10 @@ class Board {
         return y * width + x;
     }
 
+    public Stone getCurrent(){
+        return next;
+    }
+
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("\n+-------------------+");
