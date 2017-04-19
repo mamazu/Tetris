@@ -50,9 +50,4 @@ public class Highscore {
 
     public void save(){f.writeToDisk();}
 
-    public static void main(String[]args){
-        Highscore h = new Highscore("highscore.dat");
-        h.save();
-        System.out.print(Arrays.toString(h.getAll()));
-    }
 }
