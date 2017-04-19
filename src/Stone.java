@@ -30,7 +30,7 @@ public class Stone {
         pattern = newpattern;
     }
 
-    public Point dimension(){
+    public Point dimension() {
         Point p = new Point(position);
         p.translate(pattern[0].length, pattern.length);
         return p;

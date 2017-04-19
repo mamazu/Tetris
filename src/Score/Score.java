@@ -11,7 +11,7 @@ public class Score {
     private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH-mm-ss");
 
     public Score(String username, int score, String date) {
-        this(username,score);
+        this(username, score);
         setDate(date);
     }
 
@@ -46,8 +46,8 @@ public class Score {
     }
 
     public int compareTo(Score o2) {
-        if(score > o2.score) return 1;
-        if(score < o2.score) return -1;
+        if (score > o2.score) return 1;
+        if (score < o2.score) return -1;
         return date.compareTo(o2.date);
     }
 

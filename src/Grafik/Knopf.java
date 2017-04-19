@@ -44,7 +44,7 @@ class Knopf {
         this.y = y;
     }
 
-    public void setSchrift(Font f){
+    public void setSchrift(Font f) {
         Grafik.setFont(f);
     }
 
@@ -67,7 +67,7 @@ class Knopf {
         Grafik.text(this.x, this.y, this.content, 0);
     }
 
-    public void zeichneAus(){
+    public void zeichneAus() {
         Grafik.setPenColor(Grafik.WHITE);
         Grafik.filledRectangle(this.x, this.y, this.width, this.height);
         Grafik.setPenColor();
@@ -75,7 +75,7 @@ class Knopf {
         Grafik.text(this.x, this.y, this.content, 0);
     }
 
-    public void zeichneAn(String s){
+    public void zeichneAn(String s) {
         Grafik.setPenColor(Grafik.GREEN);
         Grafik.filledRectangle(this.x, this.y, this.width, this.height);
         Grafik.setPenColor();

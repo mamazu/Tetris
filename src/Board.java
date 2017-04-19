@@ -25,7 +25,7 @@ class Board {
     }
 
     void update() {
-        if(next.position.x == 0 && movement.x == -1 || next.dimension().x == width -1 && movement.x == 1){
+        if (next.position.x == 0 && movement.x == -1 || next.dimension().x == width - 1 && movement.x == 1) {
             movement.x = 0;
         }
     }
@@ -76,7 +76,7 @@ class Board {
         return y * width + x;
     }
 
-    public Stone getCurrent(){
+    public Stone getCurrent() {
         return next;
     }
 
@@ -108,19 +108,19 @@ class Board {
     public int removeRows() {
         int removed = 0;
         int max = board.length / width;
-        for(int i = 0; i < max; i++){
+        for (int i = 0; i < max; i++) {
             // Checks if the row has to be removed
             boolean toRemove = true;
-            for(int j = 0; j < width; j++){
-                if(board[j+i*width]) continue;
+            for (int j = 0; j < width; j++) {
+                if (board[j + i * width]) continue;
                 toRemove = false;
             }
-            if(!toRemove) continue;
+            if (!toRemove) continue;
             removed += 1;
             // Copies the next lines over and fills the rest with false
-            for(int otherLines = i; otherLines < max; otherLines++)
-                for(int j = 0; j < width; j++){
-                    board[j+otherLines*width] = (otherLines + 1) * width < max && board[j + (otherLines + 1) * width];
+            for (int otherLines = i; otherLines < max; otherLines++)
+                for (int j = 0; j < width; j++) {
+                    board[j + otherLines * width] = (otherLines + 1) * width < max && board[j + (otherLines + 1) * width];
                 }
             max -= 1;
         }
