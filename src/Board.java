@@ -24,8 +24,41 @@ class Board {
         }
     }
 
-    private boolean getValue(int x, int y) {
-        return board[index(x, y)];
+    void update() {
+    }
+
+    void control(int direction) {
+        switch (direction) {
+            case 0:
+                //up: immediate down
+                movement.setLocation(0, board.length / width + 1);
+                return;
+            case 1:
+                //right
+                movement.setLocation(1, 1);
+                return;
+            case 2:
+                movement.setLocation(0, 2);
+                return;
+            case 3:
+                movement.setLocation(-1, 1);
+                return;
+            default:
+                System.err.println("Invalid direction");
+        }
+    }
+
+    private boolean stoneCollides(int dy) {
+        boolean[][] pattern = next.getPattern();
+        for (int y = 0; y < pattern.length; y++) {
+            for (int x = 0; x < pattern[y].length; x++) {
+                if (!pattern[y][x]) continue;
+                int index = index(next.position) + index(x, y + dy);
+                if (board[index] || (y + dy > board.length / width))
+                    return true;
+            }
+        }
+        return false;
     }
 
     private void setValue(int x, int y, boolean value) {
