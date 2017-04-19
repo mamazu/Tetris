@@ -25,6 +25,9 @@ class Board {
     }
 
     void update() {
+        if(next.position.x == 0 && movement.x == -1 || next.dimension().x == width -1 && movement.x == 1){
+            movement.x = 0;
+        }
     }
 
     void control(int direction) {
@@ -92,6 +95,10 @@ class Board {
 
     public boolean hasCollided() {
         return next == null;
+    }
+
+    void rotateNext() {
+        next.rotate();
     }
 }
 
