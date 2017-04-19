@@ -11,6 +11,10 @@ public class Highscore {
 
     public Highscore(String name){
         f = new FileHandler(name);
+        load();
+    }
+
+    private void load() {
         for(String line : f.getContent()){
             if(line.startsWith("#")) continue;
             String[] part = line.split(":", 3);
