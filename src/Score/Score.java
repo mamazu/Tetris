@@ -21,14 +21,6 @@ public class Score {
         date = new Date();
     }
 
-    public void setDate(String date) {
-        try {
-            this.date = sdf.parse(date);
-        } catch (ParseException e) {
-            System.err.println("Please use the iso-format YYYY-MM-dd");
-        }
-    }
-
     public String getUsername() {
         return username;
     }
@@ -41,6 +33,18 @@ public class Score {
         return date;
     }
 
+    public void setDate(String date) {
+        try {
+            this.date = sdf.parse(date);
+        } catch (ParseException e) {
+            System.err.println("Please use the iso-format YYYY-MM-dd");
+        }
+    }
+
+    public String getFormattedDate() {
+        return sdf.format(date);
+    }
+
     public int compareTo(Score o2) {
         if(score > o2.score) return 1;
         if(score < o2.score) return -1;
@@ -49,6 +53,6 @@ public class Score {
 
     @Override
     public String toString() {
-        return username + ":" + score + ":" + sdf.format(date);
+        return username + ":" + score + ":" + getFormattedDate();
     }
 }
