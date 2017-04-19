@@ -4,7 +4,7 @@ public class Stone {
 
     StoneTypes type;
     private boolean[][] pattern;
-    private Point position = null;
+    Point position = null;
 
     public Stone() {
         this(StoneType.random());
@@ -30,7 +30,11 @@ public class Stone {
         pattern = newpattern;
     }
 
-    public String getPattern() {
+    public boolean[][] getPattern() {
+        return pattern;
+    }
+
+    public String getPatternString() {
         StringBuilder s = new StringBuilder();
         for (boolean[] row : pattern) {
             for (boolean field : row)

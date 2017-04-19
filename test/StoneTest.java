@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class StoneTest {
     @Test
     void testT() {
-        String stone = new Stone(StoneTypes.T).getPattern();
+        String stone = new Stone(StoneTypes.T).getPatternString();
         String shouldBe =
                 "_x__\n" +
                         "xxx_\n" +
@@ -17,7 +17,7 @@ public class StoneTest {
 
     @Test
     void testL() {
-        String stone = new Stone(StoneTypes.L).getPattern();
+        String stone = new Stone(StoneTypes.L).getPatternString();
         String shouldBe =
                 "xxx_\n" +
                         "x___\n" +
@@ -28,7 +28,7 @@ public class StoneTest {
 
     @Test
     void testJ() {
-        String stone = new Stone(StoneTypes.J).getPattern();
+        String stone = new Stone(StoneTypes.J).getPatternString();
         String shouldBe =
                 "xxx_\n" +
                         "__x_\n" +
@@ -39,7 +39,7 @@ public class StoneTest {
 
     @Test
     void testS() {
-        String stone = new Stone(StoneTypes.S).getPattern();
+        String stone = new Stone(StoneTypes.S).getPatternString();
         String shouldBe =
                 "_xx_\n" +
                         "xx__\n" +
@@ -50,7 +50,7 @@ public class StoneTest {
 
     @Test
     void testZ() {
-        String stone = new Stone(StoneTypes.Z).getPattern();
+        String stone = new Stone(StoneTypes.Z).getPatternString();
         String shouldBe =
                 "xx__\n" +
                         "_xx_\n" +
@@ -61,7 +61,7 @@ public class StoneTest {
 
     @Test
     void testSquare() {
-        String stone = new Stone(StoneTypes.SQUARE).getPattern();
+        String stone = new Stone(StoneTypes.SQUARE).getPatternString();
         String shouldBe =
                 "xx__\n" +
                         "xx__\n" +
@@ -72,7 +72,7 @@ public class StoneTest {
 
     @Test
     void testBar() {
-        String stone = new Stone(StoneTypes.BAR).getPattern();
+        String stone = new Stone(StoneTypes.BAR).getPatternString();
         String shouldBe =
                 "x___\n" +
                         "x___\n" +
@@ -96,13 +96,13 @@ public class StoneTest {
                         "__xx\n" +
                         "____\n" +
                         "____\n";
-        assertEquals(shouldBe, stone.getPattern());
+        assertEquals(shouldBe, stone.getPatternString());
     }
 
     @Test
     void randomStone() {
         Stone stone = new Stone();
-        assertTrue(stone.getPattern().contains("x"));
+        assertTrue(stone.getPatternString().contains("x"));
     }
 
     @Test
