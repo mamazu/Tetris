@@ -104,5 +104,22 @@ class Board {
     void rotateNext() {
         next.rotate();
     }
-}
 
+    public int removeRows() {
+        int removed = 0;
+        int max = board.length / width;
+        for(int i = 0; i < max; i++){
+            boolean toRemove = true;
+            for(int j = 0; j < width; j++){
+                if(board[j+i*width]) continue;
+                toRemove = false;
+            }
+            if(!toRemove) continue;
+            removed += 1;
+            for(int j = 0; j < width; j++){
+                board[j+i*width] = (i + 1) * width < max && board[j + (i + 1) * width];
+            }
+        }
+        return removed;
+    }
+}
