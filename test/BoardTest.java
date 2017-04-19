@@ -79,39 +79,4 @@ class BoardTest {
         assertEquals(shouldBe, emptyBoard);
     }
 
-    @Test
-    void gettingAnEmptyField() {
-        Board b = new Board(10, 4);
-        b.setValue(2, 3, true);
-        assertEquals(false, b.getValue(3, 2));
-    }
-
-    @Test
-    void settingASquare() {
-        Board b = new Board(10, 4);
-        b.setValue(2, 3, true);
-        assertEquals(true, b.getValue(2, 3));
-    }
-
-    @Test
-    void testIndexOutOfBoundsExceptionSet() {
-        Board b = new Board(10, 4);
-        try {
-            b.setValue(9, 8, true);
-            fail("Did not throw an error");
-        } catch (IndexOutOfBoundsException e) {
-            assertEquals(true, true);
-        }
-    }
-
-    @Test
-    void testIndexOutOfBoundsExceptionGet() {
-        Board b = new Board(10, 4);
-        try {
-            b.getValue(9, 8);
-            fail("Did not throw an error");
-        } catch (IndexOutOfBoundsException e) {
-            assertEquals(true, true);
-        }
-    }
 }
