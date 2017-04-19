@@ -1,8 +1,6 @@
 package Score;
 
-import Score.Score;
 import tools.FileHandler;
-
 import java.util.LinkedList;
 
 public class Highscore {
