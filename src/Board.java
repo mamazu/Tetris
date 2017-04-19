@@ -109,6 +109,7 @@ class Board {
         int removed = 0;
         int max = board.length / width;
         for(int i = 0; i < max; i++){
+            // Checks if the row has to be removed
             boolean toRemove = true;
             for(int j = 0; j < width; j++){
                 if(board[j+i*width]) continue;
@@ -116,9 +117,12 @@ class Board {
             }
             if(!toRemove) continue;
             removed += 1;
-            for(int j = 0; j < width; j++){
-                board[j+i*width] = (i + 1) * width < max && board[j + (i + 1) * width];
-            }
+            // Copies the next lines over and fills the rest with false
+            for(int otherLines = i; otherLines < max; otherLines++)
+                for(int j = 0; j < width; j++){
+                    board[j+otherLines*width] = (otherLines + 1) * width < max && board[j + (otherLines + 1) * width];
+                }
+            max -= 1;
         }
         return removed;
     }
