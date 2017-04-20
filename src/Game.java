@@ -10,6 +10,10 @@ public class Game {
             System.out.print(g.board);
             System.out.println("Next stone is: " + g.getNext());
             System.out.println("Next pattern is: \n" + g.getNext().getPatternString());
+            g.update();
+            System.out.print(g.board.withStone());
+            System.out.println("Next stone is: " + g.getNext());
+            System.out.println("Next pattern is: \n" + g.getNext().getPatternString());
             return;
         }
         // Game with GUI
@@ -37,11 +41,11 @@ public class Game {
     }
 
     public void update() {
-        board.update();
         if (board.hasCollided()) {
             int rows = board.removeRows();
             score += rows * 100;
             board.setNext(next());
         }
+        board.update();
     }
 }
