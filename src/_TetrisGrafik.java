@@ -1,5 +1,6 @@
 import java.awt.Font;
 import Score.*;
+import java.awt.Dimension;
 
 public class _TetrisGrafik{
 
@@ -13,8 +14,12 @@ public class _TetrisGrafik{
 		}
 	}
 
-	public static void initMitwirkende(Draw Grafik){
-		
+	public static void zeichneRaster(Draw Grafik, int x, int y){	//400 585
+		for(int i=0; i<y; i++){
+			for(int j=0; j<x; j++){
+				Grafik.square(100 + (200/2*x) + (j * (200/x)), (585 * 0.75) - ((585 * 0.6)/2*x) + (i * ((585 * 0.7)/y)), (200/2*x));	//x,y,r
+			}
+		}
 
 	}
 
@@ -115,6 +120,11 @@ public class _TetrisGrafik{
 						while(Grafik.mousePressed()){}
 							init(Grafik, 2);	//Bestenliste
 					}
+
+					if (Grafik.mouseY() < 0.75 + Hoehe && Grafik.mouseY() > 0.75 - Hoehe && Grafik.mousePressed()){
+						while(Grafik.mousePressed()){}
+							init(Grafik, 1);	//Spielen
+					}
 				}
 
 				//Tastensteuerung
@@ -168,6 +178,24 @@ public class _TetrisGrafik{
 		}
 		else if(Modus == 1){
 			//Spielen
+			Grafik.clear();
+			Grafik.setFont(Ueberschrift);
+			Grafik.text(0.5, 0.9, "Tetris", 0);
+			Grafik.setFont();
+			Game Spiel = new Game();
+			Board brett = Spiel.getBoard();
+			Dimension dim = brett.getDimension();
+			if (dim.getWidth() > dim.getHeight()) System.out.println("Breite groesser als Hoeher! Kann grapfische Fehler verursachen!");
+			//setXscale	setYscale
+			Grafik.setXscale(0, 400);
+			Grafik.setYscale(0,585);
+			zeichneRaster(Grafik, (int) dim.getWidth(), (int) dim.getHeight());
+//			Grafik.square(200, 292.5, 50);
+			Grafik.show(20);
+
+			while(true){
+
+			}
 		}
 		else if(Modus == 2){
 			//Bestenliste
@@ -177,12 +205,22 @@ public class _TetrisGrafik{
 			Grafik.setFont(new Font("SANS_SERIF", 0, 20));
 			Grafik.text(0.5, 0.7, "Bestenliste");
 			Grafik.setFont();
+			System.out.println("Highscore");
 			Highscore hs = new Highscore("highscore.dat");
 			Score[] hss = hs.getTop(10);
 			for (int i=0; i<hss.length; i++){
-				Grafik.textLeft(0.1, (0.65-0.25*i), Integer.toString(i));
+				Grafik.text(0.25, (0.65-0.025*i), Integer.toString(i+1));
+				Grafik.textLeft(0.3, (0.65-0.025*i), hss[i].getUsername());
+				Grafik.textLeft(0.75, (0.65-0.025*i), Integer.toString(hss[i].getScore()));
 			}
+			Knopf hm3 = new Knopf("Hauptmenü", 0.5, 0.2, 0.25, 0.025, Grafik);
+			hm3.zeichneAn();
+
 			Grafik.show(20);
+
+			while(true){
+				if(Grafik.mouseX() > 0.25 && Grafik.mouseX() < 0.75 && Grafik.mouseY() > 0.175 && Grafik.mouseY() < 0.225 && Grafik.mousePressed()) break;
+			}
 		}
 		else if(Modus == 3){
 			//Steuerung
@@ -242,6 +280,16 @@ public class _TetrisGrafik{
 	}
 
 	public static void main(String[] args){
+
+		if (args.length == 1 && args[0].equals("cli")) {
+			Game g = new Game();
+            System.out.print(g.board);
+            System.out.println("Next stone is: " + g.getNext());
+            System.out.println("Next pattern is: \n" + g.getNext().getPatternString());
+            return;
+        }
+
+        //Einrichten der grapfischen Ausgabe
 		Draw Grafik = new Draw("Tetris");
 		Grafik.setCanvasSize(400, 585);	//400 700
 
