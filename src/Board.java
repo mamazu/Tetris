@@ -91,6 +91,7 @@ class Board {
     }
 
     public void setNext(Stone next) {
+        next.position = new Point((width - next.getWidth()) / 2, 0);
         this.next = next;
     }
 
