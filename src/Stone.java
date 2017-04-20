@@ -3,8 +3,8 @@ import java.awt.*;
 public class Stone {
 
     StoneTypes type;
-    private boolean[][] pattern;
     Point position = null;
+    private boolean[][] pattern;
 
     public Stone() {
         this(StoneType.random());
@@ -19,6 +19,14 @@ public class Stone {
         this.type = type;
         pattern = StoneType.getPattern(type);
         this.position = position;
+    }
+
+    public int getWidth() {
+        return pattern[0].length;
+    }
+
+    public int getHeight() {
+        return pattern.length;
     }
 
     public void rotate() {
