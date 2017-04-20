@@ -85,17 +85,9 @@ class Board {
         return next;
     }
 
+    @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-        result.append("\n+-------------------+");
-        for (int i = 0; i < board.length; i++) {
-            if (i % width == 0)
-                result.append("\n|");
-            char filled = board[i] ? 'x' : ' ';
-            result.append(filled).append("|");
-        }
-        result.append("\n+-------------------+\n");
-        return result.toString();
+        return display(board);
     }
 
     public void setNext(Stone next) {
