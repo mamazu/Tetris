@@ -8,7 +8,7 @@ public class Score {
     private String username;
     private int score;
     private Date date;
-    private SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH-mm-ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 
     public Score(String username, int score, String date) {
         this(username, score);
@@ -37,7 +37,7 @@ public class Score {
         try {
             this.date = sdf.parse(date);
         } catch (ParseException e) {
-            System.err.println("Please use the iso-format YYYY-MM-dd");
+            System.err.println("Please use the iso-format yyyy-MM-dd HH-mm-ss");
         }
     }
 
