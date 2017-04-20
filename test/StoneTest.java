@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -108,5 +110,16 @@ public class StoneTest {
     @Test
     void emptyStoneType() {
         assertEquals(StoneType.toString(null), "");
+    }
+
+    @Test
+    void stoneDimension() {
+        Point p = new Point(2, 3);
+        Stone stone = new Stone(StoneType.random(), new Point(p));
+        boolean[][] pattern = stone.getPattern();
+        p.y = (int) (p.getY() + pattern.length);
+        p.x = (int) (p.getX() + pattern[0].length);
+        Point result = stone.dimension();
+        assertEquals(result, p);
     }
 }
