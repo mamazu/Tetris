@@ -24,6 +24,10 @@ class Board {
         }
     }
 
+    public Dimension getDimension(){
+        return new Dimension(width, board.length / width);
+    }
+
     void update() {
         if (next.position.x == 0 && movement.x == -1 || next.dimension().x == width - 1 && movement.x == 1) {
             movement.x = 0;
