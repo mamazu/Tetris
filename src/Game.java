@@ -28,7 +28,8 @@ public class Game {
     public void control(int direction) {
         if (direction == -1)
             board.rotateNext();
-        board.control(direction);
+        else
+            board.control(direction);
     }
 
     public Stone getNext() {
