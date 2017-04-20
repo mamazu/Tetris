@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 
 class Board {
     public static final int HEIGHT = 20;
@@ -129,5 +130,30 @@ class Board {
             max -= 1;
         }
         return removed;
+    }
+
+    public String withStone(){
+        boolean[] newBoard = Arrays.copyOf(board, board.length);
+        boolean[][] pattern = next.getPattern();
+        for(int y = 0; y<pattern.length; y++)
+            for(int x = 0; x < pattern[y].length; x++) {
+                Point stonePos = new Point(next.position);
+                stonePos.translate(x,y);
+                newBoard[index(stonePos)] |= pattern[y][x];
+            }
+        return display(newBoard);
+    }
+
+    private String display(boolean[] board) {
+        StringBuilder result = new StringBuilder();
+        result.append("\n+-------------------+");
+        for (int i = 0; i < board.length; i++) {
+            if (i % width == 0)
+                result.append("\n|");
+            char filled = board[i] ? 'x' : ' ';
+            result.append(filled).append("|");
+        }
+        result.append("\n+-------------------+\n");
+        return result.toString();
     }
 }
