@@ -1,0 +1,61 @@
+package tools;
+
+import java.awt.*;
+
+public class Pattern {
+	public final static int WIDTH = 4;
+	public final static int HEIGHT = 4;
+
+	protected boolean[] pattern;
+	protected final int width;
+
+	public Pattern(Pattern copy) {
+		width = copy.width;
+		pattern = new boolean[copy.pattern.length];
+	}
+
+	public Pattern(int x, int y) {
+		if (x < 1 || y < 1) {
+			x = Pattern.WIDTH;
+			y = Pattern.HEIGHT;
+		}
+		width = x;
+		pattern = new boolean[x * y];
+	}
+
+	public Dimension getDimension() {
+		return new Dimension(width, pattern.length / width);
+	}
+
+	protected void set(int x, int y, boolean value) {
+		int index = index(x, y);
+		if (index < 0 || index >= pattern.length)
+			return;
+		pattern[index] = value;
+	}
+
+	protected void set(Pattern p){
+		pattern = p.pattern;
+	}
+
+	private int index(int x, int y) {
+		return y * width + x;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < pattern.length; i++) {
+			s.append(pattern[i] ? "x" : "_");
+			if ((i + 1) % width == 0)
+				s.append("\n");
+		}
+		return s.toString();
+	}
+
+	// ----------------- STATIC METHODS -----------------
+	public static Pattern add(Pattern p1, Pattern p2) {
+		throw new Exception("Not implemented");
+		//return new Pattern();
+	}
+}
