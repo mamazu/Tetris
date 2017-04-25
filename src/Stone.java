@@ -11,7 +11,6 @@ public class Stone extends Pattern{
     }
 
     public Stone(StoneTypes type) {
-        super(4, 4);
         this.type = type;
         set(StoneType.getPattern(type));
     }
