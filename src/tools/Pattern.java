@@ -7,7 +7,11 @@ public class Pattern {
 	public final static int HEIGHT = 4;
 
 	protected boolean[] pattern;
-	protected final int width;
+	private int width;
+
+	public Pattern() {
+		this(Pattern.WIDTH, Pattern.HEIGHT);
+	}
 
 	public Pattern(Pattern copy) {
 		width = copy.width;
@@ -36,6 +40,21 @@ public class Pattern {
 
 	protected void set(Pattern p){
 		pattern = p.pattern;
+	}
+
+	protected void getWidth() {return width;}
+
+	protected void setWidth(int width) {
+		if (width < 1)
+			return
+			  this.width = width;
+	}
+
+	protected boolean get(int x, int y) {
+		int index = index(x, y);
+		if (index < 0 || index >= pattern.length)
+			return false;
+		return pattern[index];
 	}
 
 	private int index(int x, int y) {
