@@ -1,7 +1,7 @@
 import java.awt.*;
 import tools.*;
 
-public class Stone extends RotatablePattern{
+public class Stone extends Pattern{
 
     StoneTypes type;
     Point position = null;
@@ -21,14 +21,12 @@ public class Stone extends RotatablePattern{
         this.position = position;
     }
 
-    // public void rotate() {
-    //     boolean[][] newpattern = new boolean[4][4];
-    //     for (int x = 0; x < pattern.length; x++) {
-    //         for (int y = 0; y < pattern[x].length; y++)
-    //             newpattern[x][3 - y] = pattern[y][x];
-    //     }
-    //     pattern = newpattern;
-    // }
+    public void rotate() {
+        Pattern newpattern = new Pattern();
+        newpattern.setWidth(getWidth());
+        // Implement rotate here
+        set(newpattern);
+    }
 
     public boolean[] getPattern() {
         return pattern;
