@@ -42,12 +42,12 @@ public class Pattern {
 		pattern = p.pattern;
 	}
 
-	protected void getWidth() {return width;}
+	public int getWidth() {return width;}
 
-	protected void setWidth(int width) {
+	public void setWidth(int width) {
 		if (width < 1)
-			return
-			  this.width = width;
+			return;
+		this.width = width;
 	}
 
 	protected boolean get(int x, int y) {
