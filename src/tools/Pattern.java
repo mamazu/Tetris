@@ -57,7 +57,7 @@ public class Pattern {
 		return pattern[index];
 	}
 
-	private int index(int x, int y) {
+	protected int index(int x, int y) {
 		return y * width + x;
 	}
 
@@ -74,7 +74,7 @@ public class Pattern {
 
 	// ----------------- STATIC METHODS -----------------
 	public static Pattern add(Pattern p1, Pattern p2) {
-		throw new Exception("Not implemented");
-		//return new Pattern();
+		System.err.println("Not implemented");
+		return new Pattern();
 	}
 }
