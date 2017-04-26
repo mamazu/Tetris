@@ -2,7 +2,7 @@ import Score.Highscore;
 
 public class ErstelleHighscore{
 	public static void main (String[] args){
-		Highscore hs = new Highscore("Testdaten.hs");
+		Highscore hs = new Highscore("../test/testdata.dat");
 		hs.addScore("Mamazu", 50);
 		hs.addScore("Mamazu1995", 51);
 		hs.addScore("Han", 40);
