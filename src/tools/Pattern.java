@@ -1,6 +1,7 @@
 package tools;
 
 import java.awt.*;
+import java.util.Arrays;
 
 public class Pattern {
 	public final static int WIDTH = 4;
@@ -15,7 +16,7 @@ public class Pattern {
 
 	public Pattern(Pattern copy) {
 		width = copy.width;
-		pattern = new boolean[copy.pattern.length];
+		pattern = copy.pattern;
 	}
 
 	public Pattern(int x, int y) {
@@ -31,14 +32,18 @@ public class Pattern {
 		return new Dimension(width, pattern.length / width);
 	}
 
-	protected void set(int x, int y, boolean value) {
-		int index = index(x, y);
+	public void set(int x, int y, boolean value) {
+		set(index(x,y), value);
+	}
+
+	public void set(int index, boolean value) {
 		if (index < 0 || index >= pattern.length)
 			return;
 		pattern[index] = value;
 	}
 
 	protected void set(Pattern p){
+		width = p.width;
 		pattern = p.pattern;
 	}
 
@@ -65,9 +70,9 @@ public class Pattern {
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		for (int i = 0; i < pattern.length; i++) {
-			s.append(pattern[i] ? "x" : "_");
-			if ((i + 1) % width == 0)
+			if (i % width == 0 && i != 0)
 				s.append("\n");
+			s.append(pattern[i] ? "x" : "_");
 		}
 		return s.toString();
 	}
@@ -75,6 +80,10 @@ public class Pattern {
 	// ----------------- STATIC METHODS -----------------
 	public static Pattern add(Pattern p1, Pattern p2) {
 		System.err.println("Not implemented");
-		return new Pattern();
+		return new Pattern(10, 10);
+	}
+
+	public void setAll(boolean all) {
+		Arrays.fill(pattern, all);
 	}
 }

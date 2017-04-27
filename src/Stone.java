@@ -4,7 +4,7 @@ import tools.StoneTypes;
 
 import java.awt.*;
 
-public class Stone extends Pattern{
+public class Stone extends Pattern {
 
     StoneTypes type;
     Point position = null;
@@ -14,8 +14,8 @@ public class Stone extends Pattern{
     }
 
     public Stone(StoneTypes type) {
+        super(StoneType.getPattern(type));
         this.type = type;
-        set(StoneType.getPattern(type));
     }
 
     public Stone(StoneTypes type, Point position) {
