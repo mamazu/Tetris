@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Highscore {
 
-    public FileHandler f;
+    private FileHandler f;
     private LinkedList<Score> scores = new LinkedList<Score>();
 
     public Highscore(String name) {
@@ -45,10 +45,6 @@ public class Highscore {
             result[i] = scores.get(i);
         }
         return result;
-    }
-
-    public Score[] getAll() {
-        return getTop(scores.size());
     }
 
     public void save() {
