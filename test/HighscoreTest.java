@@ -1,19 +1,26 @@
 import Score.Highscore;
+import Score.Score;
+import org.junit.jupiter.api.Test;
 
-public class HighscoreTest {
-	public static void main (String[] args){
-		Highscore hs = new Highscore("../test/testdata.dat");
-		hs.addScore("Mamazu", 50);
-		hs.addScore("Mamazu1995", 51);
-		hs.addScore("Han", 40);
-		hs.addScore("Han Feizi", 56);
-		hs.addScore("Sigma", 55);
-		hs.addScore("M", 57);
-		hs.addScore("S", 51);
-		hs.addScore("H", 49);
-		hs.addScore("Feizi", 52);
-		hs.addScore("F", 53);
-		hs.addScore("fail", 20);
-		hs.save();
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class HighscoreTest {
+
+	@Test
+	void testBest(){
+		Highscore hs = new Highscore("test/res/testdata.dat");
+		Score best = hs.getTop(1)[0];
+		assertEquals(best.getUsername(), "Feizi");
 	}
+
+	@Test
+	void testAddingScore(){
+		Highscore hs = new Highscore("test/res/testdata.dat");
+		hs.addScore("Someone", 20);
+		System.out.print(hs.toString());
+		assertEquals(hs.toString().contains("Someone"), true);
+	}
+
+
+
 }
