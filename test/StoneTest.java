@@ -9,44 +9,34 @@ class StoneTest {
     @Test
     void testT() {
         String stone = new Stone(StoneTypes.T).getPatternString();
-        String shouldBe =
-                "_x__\n" +
-                        "xxx_\n" +
-                        "____\n" +
-                        "____\n";
+        String shouldBe ="_x_\n" +
+                        "xxx";
         assertEquals(shouldBe, stone);
     }
 
     @Test
     void testL() {
         String stone = new Stone(StoneTypes.L).getPatternString();
-        String shouldBe =
-                "xxx_\n" +
-                        "x___\n" +
-                        "____\n" +
-                        "____\n";
+        String shouldBe = "xx\n" +
+                "x_\n" +
+                "__";
         assertEquals(shouldBe, stone);
     }
 
     @Test
     void testJ() {
         String stone = new Stone(StoneTypes.J).getPatternString();
-        String shouldBe =
-                "xxx_\n" +
-                        "__x_\n" +
-                        "____\n" +
-                        "____\n";
+        String shouldBe = "xx\n" +
+                "x_\n" +
+                "x_";
         assertEquals(shouldBe, stone);
     }
 
     @Test
     void testS() {
         String stone = new Stone(StoneTypes.S).getPatternString();
-        String shouldBe =
-                "_xx_\n" +
-                        "xx__\n" +
-                        "____\n" +
-                        "____\n";
+        String shouldBe = "_xx\n" +
+                          "xx_";
         assertEquals(shouldBe, stone);
     }
 
@@ -54,10 +44,8 @@ class StoneTest {
     void testZ() {
         String stone = new Stone(StoneTypes.Z).getPatternString();
         String shouldBe =
-                "xx__\n" +
-                        "_xx_\n" +
-                        "____\n" +
-                        "____\n";
+                "xx_\n" +
+                        "_xx";
         assertEquals(shouldBe, stone);
     }
 
@@ -65,10 +53,8 @@ class StoneTest {
     void testSquare() {
         String stone = new Stone(StoneTypes.SQUARE).getPatternString();
         String shouldBe =
-                "xx__\n" +
-                        "xx__\n" +
-                        "____\n" +
-                        "____\n";
+                "xx\n" +
+                        "xx";
         assertEquals(shouldBe, stone);
     }
 
@@ -76,10 +62,10 @@ class StoneTest {
     void testBar() {
         String stone = new Stone(StoneTypes.BAR).getPatternString();
         String shouldBe =
-                "x___\n" +
-                        "x___\n" +
-                        "x___\n" +
-                        "x___\n";
+                "x\n" +
+                        "x\n" +
+                        "x\n" +
+                        "x";
         assertEquals(shouldBe, stone);
     }
 
@@ -90,15 +76,10 @@ class StoneTest {
     }
 
     @Test
-    void rotationSquare() {
-        Stone stone = new Stone(StoneTypes.SQUARE);
+    void rotationBAR() {
+        Stone stone = new Stone(StoneTypes.BAR);
         stone.rotate();
-        String shouldBe =
-                "__xx\n" +
-                        "__xx\n" +
-                        "____\n" +
-                        "____\n";
-        assertEquals(shouldBe, stone.getPatternString());
+        assertEquals("xxxx", stone.getPatternString());
     }
 
     @Test

@@ -23,7 +23,7 @@ class BoardTest {
             "__________\n" +
             "__________\n" +
             "__________\n" +
-            "__________\n";
+            "__________";
 
     @Test
     void emptyBoard() {
@@ -46,7 +46,7 @@ class BoardTest {
         String shouldBe = "__________\n" +
                 "__________\n" +
                 "__________\n" +
-                "__________\n";
+                "__________";
         assertEquals(shouldBe, emptyBoard);
     }
 
