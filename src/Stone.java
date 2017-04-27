@@ -1,5 +1,8 @@
+import tools.Pattern;
+import tools.StoneType;
+import tools.StoneTypes;
+
 import java.awt.*;
-import tools.*;
 
 public class Stone extends Pattern{
 
@@ -21,9 +24,12 @@ public class Stone extends Pattern{
     }
 
     public void rotate() {
-        Pattern newpattern = new Pattern();
-        newpattern.setWidth(getWidth());
-        // Implement rotate here
+        Dimension dim = getDimension();
+        int height = dim.height;
+        Pattern newpattern = new Pattern(height, dim.width);
+        for (int x = 0; x < dim.getWidth(); x++)
+            for (int y = 0; y < height; y++)
+                newpattern.set((height - 1) - y, x, pattern[index(x, y)]);
         set(newpattern);
     }
 
