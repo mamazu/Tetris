@@ -2,12 +2,10 @@ import org.junit.jupiter.api.Test;
 import tools.StoneType;
 import tools.StoneTypes;
 
-import java.awt.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class StoneTest {
+class StoneTest {
     @Test
     void testT() {
         String stone = new Stone(StoneTypes.T).getPatternString();

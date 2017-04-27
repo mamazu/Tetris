@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BoardTest {
 
-    public final static String EMPTY_BOARD ="__________\n" +
+    private final static String EMPTY_BOARD ="__________\n" +
             "__________\n" +
             "__________\n" +
             "__________\n" +
