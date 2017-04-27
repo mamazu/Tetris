@@ -21,6 +21,13 @@ class HighscoreTest {
 		assertEquals(hs.toString().contains("Someone"), true);
 	}
 
-
+	@Test
+	void savingAndLoading(){
+		Highscore hs = new Highscore("test/res/testdata.dat");
+		String before = hs.toString();
+		hs.save();
+		hs = new Highscore("test/res/testdata.dat");
+		assertEquals(before, hs.toString());
+	}
 
 }
