@@ -20,7 +20,6 @@ public class Highscore {
             if (part.length != 3) continue;
             Score score = new Score(part[0], Integer.parseInt(part[1]), part[2]);
             scores.push(score);
-            System.out.println(line);
         }
         sort();
     }
@@ -49,6 +48,13 @@ public class Highscore {
 
     public void save() {
         f.writeToDisk();
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        scores.forEach((Score score) -> s.append(score.toString()).append('\n'));
+        return s.toString();
     }
 
 }
