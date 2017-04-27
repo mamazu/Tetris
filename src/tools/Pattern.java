@@ -10,10 +10,6 @@ public class Pattern {
 	protected boolean[] pattern;
 	private int width;
 
-	public Pattern() {
-		this(Pattern.WIDTH, Pattern.HEIGHT);
-	}
-
 	public Pattern(Pattern copy) {
 		width = copy.width;
 		pattern = copy.pattern;
