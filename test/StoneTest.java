@@ -17,9 +17,9 @@ class StoneTest {
     @Test
     void testL() {
         String stone = new Stone(StoneTypes.L).getPatternString();
-        String shouldBe = "xx\n" +
+        String shouldBe = "x_\n" +
                 "x_\n" +
-                "__";
+                "xx";
         assertEquals(shouldBe, stone);
     }
 

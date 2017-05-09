@@ -21,11 +21,11 @@ public class StoneType {
             case L:
                 pattern = new Pattern(2, 3);
                 for (int i = 0; i < 3; i++)
-                    pattern.set(i, 0, true);
+                    pattern.set(0, i, true);
                 if (x == StoneTypes.L) {
-                    pattern.set(0, 1, true);
+                    pattern.set(1, 2, true);
                 } else {
-                    pattern.set(2, 1, true);
+                    pattern.set(1, 0, true);
                 }
                 break;
             case T:
