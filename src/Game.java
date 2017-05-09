@@ -4,6 +4,11 @@ public class Game {
     Stone next = new Stone();
     private int score = 0;
 
+    public Game(){
+        board.setNext(next);
+        next();
+    }
+
     public static void main(String[] args) {
         Game g = new Game();
         if (args.length == 1 && args[0].equals("cli")) {
