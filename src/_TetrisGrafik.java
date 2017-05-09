@@ -1,9 +1,11 @@
-import java.awt.Font;
-import Score.*;
-import java.awt.Dimension;
-import java.awt.Color;
+import Score.Highscore;
+import Score.Score;
+import tools.Pattern;
+
+import java.awt.*;
 
 public class _TetrisGrafik{
+	protected static Board brett = new Board();
 
 	public static void hm_wahl(int w, Knopf spielen, Knopf bestenliste, Knopf steuerung, Knopf mitwirkende, Knopf beenden){
 		switch(w){
@@ -25,11 +27,14 @@ public class _TetrisGrafik{
 	}
 
 	public static void zeichneRaster(Draw Grafik, int x, int y, int Abstand){	//400 585
-		double Feld_Breite = (400 - (2 * Abstand)) / x;
+		//double Feld_Breite = (400 - (2 * Abstand)) / x;
+		Color color;
+		Pattern muster = brett.withStone();
 		for(int i=0; i<y; i++){
 			for(int j=0; j<x; j++){
-			//	Grafik.square(Abstand +  (Feld_Breite / 2) + Feld_Breite * j, 585 - (Abstand + (Feld_Breite / 2) + Feld_Breite * i), Feld_Breite / 2);	//x,y,r
-			FaerbeFeld(Grafik, x, y, Abstand, j, i, Color.WHITE);
+				//Grafik.square(Abstand +  (Feld_Breite / 2) + Feld_Breite * j, 585 - (Abstand + (Feld_Breite / 2) + Feld_Breite * i), Feld_Breite / 2);	//x,y,r
+				color = muster.get(j, i) ? Color.BLACK : Color.WHITE;
+				FaerbeFeld(Grafik, x, y, Abstand, j, i, color);
 
 			}
 		}
@@ -60,7 +65,6 @@ public class _TetrisGrafik{
 			Knopf beenden = new Knopf("Beenden", 0.5, 0.35, Breite, Hoehe, Grafik);
 			
 			//System.out.println("1");
-
 
 			//
 			while (true){
@@ -197,23 +201,21 @@ public class _TetrisGrafik{
 			Grafik.text(0.5, 0.9, "Tetris", 0);
 			Grafik.setFont();
 			Game Spiel = new Game();
-			Board brett = Spiel.getBoard();
+			brett = Spiel.getBoard();
 			Dimension dim = brett.getDimension();
 			if (dim.getWidth() > dim.getHeight()) System.out.println("Breite groesser als Hoehe! Kann graphische Fehler verursachen!");
 			//setXscale	setYscale
 			Grafik.setXscale(0, 400);
-			Grafik.setYscale(0,585);
+			Grafik.setYscale(0, 585);
 			zeichneRaster(Grafik, (int) dim.getWidth(), (int) dim.getHeight(), 100);
-//			Grafik.square(200, 292.5, 50);
 			Grafik.show(20);
 
 			while(true){
-				//Spiel.aktualisieren
+				Spiel.update();
 				// int Score = Spiel.getScore
-				// brett = Spiel.getBoard();
 				// Wehe, Du klaust mir nochmal den Bremsbelag @mamazu! Und lass meine Motorregelung in Ruhe!
-				//aktualisereFeld(Grafik, brett)
-				//
+				zeichneRaster(Grafik, (int) dim.getWidth(), (int) dim.getHeight(), 100);
+
 				if(Grafik.isKeyPressed(27))	{
 					//pauseMenu(Grafik);
 				}
