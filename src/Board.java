@@ -1,6 +1,6 @@
-import java.awt.*;
-import java.util.Arrays;
 import tools.Pattern;
+
+import java.awt.*;
 
 class Board extends Pattern{
     public static final int HEIGHT = 20;
@@ -102,8 +102,10 @@ class Board extends Pattern{
         return removed;
     }
 
-    public String withStone(){
-        Pattern p = Pattern.add((Pattern) next, (Pattern) this);
-        return p.toString();
+    public Pattern withStone(){
+        if(next == null) {
+            return this;
+        }
+        return Pattern.add((Pattern) next, (Pattern) this);
     }
 }
