@@ -1,6 +1,7 @@
 import java.awt.Font;
 import Score.*;
 import java.awt.Dimension;
+import java.awt.Color;
 
 public class _TetrisGrafik{
 
@@ -14,10 +15,22 @@ public class _TetrisGrafik{
 		}
 	}
 
-	public static void zeichneRaster(Draw Grafik, int x, int y){	//400 585
+	public static void FaerbeFeld(Draw Grafik, int dim_x, int dim_y, int Abstand, int x, int y, Color c){
+		if(dim_x <= 0 || dim_y <= 0) throw new IllegalArgumentException("dim_x, dim_y nicht positiv");
+		double Feld_Breite = (400 - (2 * Abstand)) / dim_x;
+		Grafik.setPenColor(c);
+		Grafik.filledSquare(Abstand +  (Feld_Breite / 2) + Feld_Breite * x, 585 - (Abstand + (Feld_Breite / 2) + Feld_Breite * y), Feld_Breite / 2);	//x,y,r
+		Grafik.setPenColor(Color.BLACK);
+		Grafik.square(Abstand +  (Feld_Breite / 2) + Feld_Breite * x, 585 - (Abstand + (Feld_Breite / 2) + Feld_Breite * y), Feld_Breite / 2);	//x,y,r
+	}
+
+	public static void zeichneRaster(Draw Grafik, int x, int y, int Abstand){	//400 585
+		double Feld_Breite = (400 - (2 * Abstand)) / x;
 		for(int i=0; i<y; i++){
 			for(int j=0; j<x; j++){
-				Grafik.square(100 + (200/2*x) + (j * (200/x)), (585 * 0.75) - ((585 * 0.6)/2*x) + (i * ((585 * 0.7)/y)), (200/2*x));	//x,y,r
+			//	Grafik.square(Abstand +  (Feld_Breite / 2) + Feld_Breite * j, 585 - (Abstand + (Feld_Breite / 2) + Feld_Breite * i), Feld_Breite / 2);	//x,y,r
+			FaerbeFeld(Grafik, x, y, Abstand, j, i, Color.WHITE);
+
 			}
 		}
 
@@ -172,6 +185,7 @@ public class _TetrisGrafik{
 						hm_wahl(MenueWahl, spielen, bestenliste, steuerung, mitwirkende, beenden);
 					}
 				}
+				
 				Grafik.show(20);
 
 			}
@@ -185,15 +199,24 @@ public class _TetrisGrafik{
 			Game Spiel = new Game();
 			Board brett = Spiel.getBoard();
 			Dimension dim = brett.getDimension();
-			if (dim.getWidth() > dim.getHeight()) System.out.println("Breite groesser als Hoeher! Kann grapfische Fehler verursachen!");
+			if (dim.getWidth() > dim.getHeight()) System.out.println("Breite groesser als Hoehe! Kann graphische Fehler verursachen!");
 			//setXscale	setYscale
 			Grafik.setXscale(0, 400);
 			Grafik.setYscale(0,585);
-			zeichneRaster(Grafik, (int) dim.getWidth(), (int) dim.getHeight());
+			zeichneRaster(Grafik, (int) dim.getWidth(), (int) dim.getHeight(), 100);
 //			Grafik.square(200, 292.5, 50);
 			Grafik.show(20);
 
 			while(true){
+				//Spiel.aktualisieren
+				// int Score = Spiel.getScore
+				// brett = Spiel.getBoard();
+				// Wehe, Du klaust mir nochmal den Bremsbelag @mamazu! Und lass meine Motorregelung in Ruhe!
+				//aktualisereFeld(Grafik, brett)
+				//
+				if(Grafik.isKeyPressed(27))	{
+					//pauseMenu(Grafik);
+				}
 
 			}
 		}
