@@ -11,8 +11,7 @@ public class Pattern {
 	private int width;
 
 	public Pattern(Pattern copy) {
-		width = copy.width;
-		pattern = copy.pattern;
+		set(copy);
 	}
 
 	public Pattern(int x, int y) {
@@ -40,7 +39,7 @@ public class Pattern {
 
 	protected void set(Pattern p){
 		width = p.width;
-		pattern = p.pattern;
+		pattern = p.pattern.clone();
 	}
 
 	public int getWidth() {return width;}
@@ -51,7 +50,7 @@ public class Pattern {
 		this.width = width;
 	}
 
-	protected boolean get(int x, int y) {
+	public boolean get(int x, int y) {
 		int index = index(x, y);
 		if (index < 0 || index >= pattern.length)
 			return false;
@@ -75,8 +74,31 @@ public class Pattern {
 
 	// ----------------- STATIC METHODS -----------------
 	public static Pattern add(Pattern p1, Pattern p2) {
-		System.err.println("Not implemented");
-		return new Pattern(10, 10);
+		if(p1.width != p2.width) {
+			int size = Math.max(p1.width, p2.width);
+			return add(fit(p1, size), fit(p2, size));
+		}
+		Pattern maxPattern = (p1.pattern.length > p2.pattern.length) ? p1 : p2;
+		Pattern minPattern = (maxPattern== p1) ? p2 : p1;
+		Pattern p = new Pattern(maxPattern);
+		for(int i = 0; i < minPattern.pattern.length; i++){
+			p.pattern[i] |= minPattern.pattern[i];
+		}
+		return p;
+	}
+
+	public static Pattern fit(Pattern p, int size){
+		if(p.width > size)
+			return null;
+		if(p.width == size)
+			return p;
+		// You have to expand
+		Pattern newPattern = new Pattern(size, p.getDimension().height);
+		for (int x = 0; x < p.width; x++)
+			for(int y = 0; y < p.getDimension().height; y++)
+				newPattern.set(x,y, p.get(x,y));
+
+		return newPattern;
 	}
 
 	public void setAll(boolean all) {
