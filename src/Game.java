@@ -1,7 +1,6 @@
 public class Game {
 
-    Board board = new Board();
-    Stone next = new Stone();
+    private Board board = new Board();
     private int score = 0;
 
     public static void main(String[] args) {
@@ -36,7 +35,7 @@ public class Game {
         return getBoard().getNext();
     }
 
-    public void update() {
+    void update() {
         if (board.hasCollided()) {
             int rows = board.removeRows();
             score += rows * 100;

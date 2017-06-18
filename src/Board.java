@@ -2,20 +2,20 @@ import tools.Pattern;
 
 import java.awt.*;
 
-class Board extends Pattern{
+class Board extends Pattern {
     public static final int HEIGHT = 20;
     public static final int WIDTH = 10;
 
     private Stone next;
     private Point movement = new Point(0, 1);
 
-    public Board() {
+    Board() {
         this(Board.WIDTH, Board.HEIGHT);
     }
 
-    public Board(int width, int height) {
+    Board(int width, int height) {
         super(width, height);
-        if(width * height < 1){
+        if (width * height < 1) {
             pattern = new boolean[Board.HEIGHT * Board.WIDTH];
             setWidth(Board.WIDTH);
         }
@@ -86,7 +86,7 @@ class Board extends Pattern{
         next.rotate();
     }
 
-    public int removeRows() {
+    int removeRows() {
         int removed = 0;
         int width = getWidth();
         int max = pattern.length / width;
