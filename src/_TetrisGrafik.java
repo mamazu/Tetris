@@ -308,9 +308,9 @@ public class _TetrisGrafik{
 
 		if (args.length == 1 && args[0].equals("cli")) {
 			Game g = new Game();
-            System.out.print(g.board);
-            System.out.println("Next stone is: " + g.getNext());
-            System.out.println("Next pattern is: \n" + g.getNext().getPatternString());
+            System.out.print(g.getBoard());
+            System.out.println("Next stone is: " + g.getNextStone());
+            System.out.println("Next pattern is: \n" + g.getNextStone().getPatternString());
             return;
         }
 

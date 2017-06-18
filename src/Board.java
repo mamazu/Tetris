@@ -66,12 +66,19 @@ class Board extends Pattern{
         return next;
     }
 
-    public void setNext(Stone next) {
+    void next() {
+        Stone next = new Stone();
         next.position = new Point((getWidth() - next.getWidth()) / 2, 0);
         this.next = next;
     }
 
-    public boolean hasCollided() {
+    public Stone getNext() {
+        if(next == null)
+            next();
+        return next;
+    }
+
+    boolean hasCollided() {
         return next == null;
     }
 
@@ -102,8 +109,8 @@ class Board extends Pattern{
         return removed;
     }
 
-    public Pattern withStone(){
-        if(next == null) {
+    Pattern withStone() {
+        if (next == null) {
             return this;
         }
         return Pattern.add((Pattern) next, (Pattern) this);

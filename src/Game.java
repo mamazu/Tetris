@@ -4,30 +4,21 @@ public class Game {
     Stone next = new Stone();
     private int score = 0;
 
-    public Game(){
-        board.setNext(next);
-        next();
-    }
-
     public static void main(String[] args) {
         Game g = new Game();
         if (args.length == 1 && args[0].equals("cli")) {
-            System.out.print(g.board);
-            System.out.println("Next stone is: " + g.getNext());
-            System.out.println("Next pattern is: \n" + g.getNext().getPatternString());
+            System.out.println("The current state of the board");
+            System.out.println(g.board.withStone());
+            System.out.println("Next stone is: " + g.getNextStone());
+            System.out.println("Next pattern is: \n" + g.getNextStone().getPatternString());
             g.update();
-            System.out.print(g.board.withStone());
-            System.out.println("Next stone is: " + g.getNext());
-            System.out.println("Next pattern is: \n" + g.getNext().getPatternString());
+            System.out.println("Board after update");
+            System.out.println(g.board.withStone());
+            System.out.println("Next stone is: " + g.getNextStone());
+            System.out.println("Next pattern is: \n" + g.getNextStone().getPatternString());
             return;
         }
         // Game with GUI
-    }
-
-    private Stone next() {
-        Stone next = this.next;
-        this.next = new Stone();
-        return next;
     }
 
     public Board getBoard() {
@@ -41,15 +32,15 @@ public class Game {
             board.control(direction);
     }
 
-    public Stone getNext() {
-        return next;
+    Stone getNextStone(){
+        return getBoard().getNext();
     }
 
     public void update() {
         if (board.hasCollided()) {
             int rows = board.removeRows();
             score += rows * 100;
-            board.setNext(next());
+            board.next();
         }
         board.update();
     }
