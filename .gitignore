@@ -12,3 +12,8 @@ hs_err_pid*
 .idea/
 Tetris.iml
 out/
+/nbproject/private/
+build.xml
+manifest.mf
+/nbproject/
+
