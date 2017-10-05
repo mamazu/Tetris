@@ -1,4 +1,4 @@
-package tools;
+package Stone;
 
 public enum StoneTypes {
     // http://www.russlandjournal.de/unterhaltung/tetris/attachment/tetris-steine/

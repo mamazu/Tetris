@@ -1,5 +1,7 @@
 package tools;
 
+import Stone.Stone;
+
 import java.awt.*;
 import java.util.Arrays;
 
@@ -50,12 +52,16 @@ public class Pattern {
 		this.width = width;
 	}
 
-	public boolean get(int x, int y) {
+	private boolean get(int x, int y) {
 		int index = index(x, y);
 		if (index < 0 || index >= pattern.length)
-			return false;
+			throw new IndexOutOfBoundsException();
 		return pattern[index];
 	}
+
+	public int getHeight(){
+	    return pattern.length / width;
+    }
 
 	protected int index(int x, int y) {
 		return y * width + x;
@@ -73,6 +79,17 @@ public class Pattern {
 	}
 
 	// ----------------- STATIC METHODS -----------------
+    public static Pattern addPadding(Pattern p1, Point position){
+	    Pattern newPattern = new Pattern(p1.getWidth()+position.x, p1.getHeight() + position.y);
+	    for(int x = 0; x < p1.getWidth(); x++){
+	        for(int y = 0; y < p1.getHeight(); y++){
+	            newPattern.set(x+position.x,y+position.y, p1.get(x, y));
+            }
+        }
+
+        return newPattern;
+    }
+
 	public static Pattern add(Pattern p1, Pattern p2) {
 		if(p1.width != p2.width) {
 			int size = Math.max(p1.width, p2.width);
