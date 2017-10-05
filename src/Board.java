@@ -1,7 +1,6 @@
 import Stone.Stone;
 import tools.Movement;
 import tools.Pattern;
-
 import java.awt.*;
 
 
@@ -11,7 +10,7 @@ class Board {
 
     private Stone nextStone;
     private Pattern board;
-    private Movement movement;
+    private Movement movement = Movement.MOVE_NOT;
 
     Board() {
         board = new Pattern(Board.WIDTH, Board.HEIGHT);
@@ -19,13 +18,6 @@ class Board {
 
     Board(int width, int height) {
         board = new Pattern(width, height);
-    }
-
-    void update() {
-        doMove();
-        doMove(Movement.MOVE_DOWN);
-
-        nextStone.constrain(new Dimension(Board.WIDTH, Board.HEIGHT));
     }
 
     void control(int direction) {
@@ -55,15 +47,15 @@ class Board {
     private void doMove(Movement movement) {
         switch (movement) {
             case MOVE_LEFT:
-                if (stoneCollides(new Point(-1, 0)))
-                    nextStone.moveDown();
+                if (!stoneCollides(new Point(-1, 0)))
+                    nextStone.moveLeft();
                 break;
             case MOVE_RIGHT:
-                if (stoneCollides(new Point(1, 0)))
+                if (!stoneCollides(new Point(1, 0)))
                     nextStone.moveRight();
                 break;
             case MOVE_DOWN:
-                if (stoneCollides(new Point(0, 1))) {
+                if (!stoneCollides(new Point(0, 1))) {
                     nextStone.moveDown();
                 }
                 break;
@@ -76,27 +68,14 @@ class Board {
     }
 
     private void moveStoneToTheBottom() {
-        while (!stoneCollides(1)) {
+        while (!stoneCollides(new Point(0, 1))) {
             nextStone.moveDown();
         }
     }
 
     private boolean stoneCollides(Point movement) {
-        return true;
-    }
-
-    private boolean stoneCollides(int dy) {
-        System.err.println("Must be implemented");
-        // boolean[][] pattern = nextStone.getPattern();
-        // for (int y = 0; y < pattern.length; y++) {
-        //     for (int x = 0; x < pattern[y].length; x++) {
-        //         if (!pattern[y][x]) continue;
-        //         int index = index(nextStone.position) + index(x, y + dy);
-        //         if (board[index] || (y + dy > board.length / width))
-        //             return true;
-        //     }
-        // }
-        return false;
+        Pattern nextStonePosition = Pattern.addPadding(nextStone.getWithOffset(), movement);
+        return Pattern.and(nextStonePosition, board);
     }
 
     Dimension getDimension() {
@@ -113,8 +92,9 @@ class Board {
     }
 
     boolean hasCollided() {
-        if (stoneCollides(0)) {
+        if (stoneCollides(new Point(0, 0))) {
             nextStone = null;
+            System.out.println("New the stone has collided");
         }
         return nextStone == null;
     }
@@ -125,6 +105,13 @@ class Board {
 
     int removeRows() {
         return 0;
+    }
+
+    void update() {
+        doMove();
+        doMove(Movement.MOVE_DOWN);
+
+        nextStone.constrain(new Dimension(Board.WIDTH, Board.HEIGHT));
     }
 
     Pattern withStone() {

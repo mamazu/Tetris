@@ -55,6 +55,8 @@ public class Stone extends Pattern {
         return super.toString();
     }
 
+    public Pattern getWithOffset(){return Pattern.addPadding(this, position);}
+
     @Override
     public String toString() {
         return StoneType.toString(type);

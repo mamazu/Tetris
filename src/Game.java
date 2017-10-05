@@ -41,11 +41,11 @@ public class Game {
     }
 
     public void update() {
+        board.update();
         if (board.hasCollided()) {
             int rows = board.removeRows();
             score += rows * 100;
             getNextStone();
         }
-        board.update();
     }
 }

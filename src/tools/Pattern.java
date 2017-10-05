@@ -104,7 +104,7 @@ public class Pattern {
 		return p;
 	}
 
-	public static Pattern fit(Pattern p, int size){
+	private static Pattern fit(Pattern p, int size){
 		if(p.width > size)
 			return null;
 		if(p.width == size)
@@ -116,6 +116,17 @@ public class Pattern {
 				newPattern.set(x,y, p.get(x,y));
 
 		return newPattern;
+	}
+
+	public static boolean and(Pattern p1, Pattern p2){
+		int minLength = Math.min(p1.pattern.length, p2.pattern.length);
+
+		for (int i = 0; i < minLength; i++){
+			if(p1.pattern[i] && p2.pattern[i]){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void setAll(boolean all) {
