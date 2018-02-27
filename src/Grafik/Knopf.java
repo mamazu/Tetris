@@ -70,9 +70,10 @@ public class Knopf {
     public void render(Graphics g){
         if(this.aktiv == true)  g.setColor(this.aktFarbe);
         else            g.setColor(this.HgFarbe);
+
         int xx = this.x - this.x2 / 2;
         int yy = this.y - this.y2 / 2;
-        g.clearRect(xx, yy, x2, y2);  //Rechteck an x,y mit Länge x2, Höhe y2
+        g.fillRect(xx, yy, x2, y2);  //Rechteck an x,y mit Länge x2, Höhe y2
         g.setColor(this.RFarbe);
         g.drawRect(xx, yy, x2, y2);
         g.setColor(this.SFarbe);
@@ -96,12 +97,13 @@ public class Knopf {
         if(xx >= (this.x -this.x2/2) && xx <= (this.x + this.x2/2)){
             if(yy >= (this.y - this.y2/2) && yy <= (this.y + this.y2/2)){
                 this.aktiv = true;
-                System.out.println("true xx");
+//                System.out.println(this.Text + "true xx");
                 return true;
             }
         }
+        this.aktiv = false;
         
-        System.out.println("False xx");
+//        System.out.println(this.Text + "(False) xx");
         return false;
     }
     
