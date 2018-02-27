@@ -5,15 +5,10 @@
  */
 package Grafik;
 
-import Grafik.Input.Maus;
-import Grafik.Input.Tastatur;
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 /**
@@ -26,11 +21,7 @@ public class Grafik extends Canvas{
     private String Titel = "Tetris";
     
     private JFrame frame;
-    private final Maus maus = new Maus();
-    private final Tastatur tastatur = new Tastatur();
-    
-    private int Modus = 0;      //0 -> Init; 1-> Hauptmenü; 
-    private Hauptmenue hm;
+
     
     public Grafik(){
         Dimension size = new Dimension(WIDTH, HEIGHT);
@@ -42,42 +33,18 @@ public class Grafik extends Canvas{
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        
-        addMouseListener(maus);
-        addMouseMotionListener(maus);
-        addKeyListener(tastatur);
-        
-        Modus = 1;
-        hm = new Hauptmenue(Grafik.WIDTH);
-        
+        frame.setVisible(true);        
     }
     
-    public void render(){
-        BufferStrategy bs = getBufferStrategy();
-        if(bs == null){
-            createBufferStrategy(2);
-            return;
-        }
-        
-        Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.WHITE);
-        g.clearRect(0, 0, WIDTH, HEIGHT);
-        g.setColor(Color.BLACK);
-        
-        //Zeichnen, Fkt
-        if(Modus == 1)  hm.render(g);
-        
-        g.dispose();
-        bs.show();
-        
+    public static int getWIDTH(){
+        return Grafik.WIDTH;
     }
     
-    public void mausUpdate(){
-        if(Modus == 1)  hm.mausUpdate(maus);
-        
-        if(this.maus.getMaustasteStatus(1)){
-        }
+    public JFrame getJFrame(){
+        return frame;
+    }
+    
+    public void render(){    
     }
     
     public static void drawStringMitte(Graphics g, String S, int x, int y){

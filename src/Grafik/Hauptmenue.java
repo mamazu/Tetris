@@ -5,7 +5,7 @@
  */
 package Grafik;
 
-import Grafik.Input.Maus;
+import Input.Maus;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;

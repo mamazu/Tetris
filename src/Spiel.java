@@ -1,5 +1,12 @@
 
 import Grafik.Grafik;
+import Grafik.Hauptmenue;
+import Input.Maus;
+import Input.Tastatur;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 
 /*
@@ -12,8 +19,12 @@ import Grafik.Grafik;
  *
  * @author simon
  */
-public class Spiel implements Runnable{
+public class Spiel extends Canvas implements Runnable{
     private Grafik g;
+    private Hauptmenue hm;
+    
+    private final Maus maus = new Maus();
+    private final Tastatur tastatur = new Tastatur();
 
     private Thread thread;
     
@@ -26,12 +37,36 @@ public class Spiel implements Runnable{
     
     public Spiel(){
         g = new Grafik();
+        hm = new Hauptmenue(Grafik.getWIDTH());
+        addMouseListener(maus);
+        addMouseMotionListener(maus);
+        addKeyListener(tastatur);
         
     }
     
     public void update(){
-        g.mausUpdate();
+        mausUpdate();
         
+    }
+    
+    public void mausUpdate(){
+        
+    }
+    
+    public void render(){
+        BufferStrategy bs = getBufferStrategy();
+        if(bs == null){
+            createBufferStrategy(2);
+            return;
+        }
+        Graphics g = bs.getDrawGraphics();
+        g.setColor(Color.WHITE);
+        g.clearRect(0, 0, WIDTH, HEIGHT);
+        g.setColor(Color.BLACK);
+        
+        
+        g.dispose();
+        bs.show();
     }
 
     
@@ -51,7 +86,7 @@ public class Spiel implements Runnable{
                 updates++;
                 delta--;
             }
-            g.render();
+            render();
             frames++;
             
             if(System.currentTimeMillis() - timer > 1000 ){
