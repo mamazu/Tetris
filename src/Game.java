@@ -1,21 +1,25 @@
+import Stone.Stone;
+
+import java.util.concurrent.TimeUnit;
+
 public class Game {
 
     private Board board = new Board();
     private int score = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Game g = new Game();
-        if (args.length == 1 && args[0].equals("cli")) {
-            System.out.println("The current state of the board");
-            System.out.println(g.board.withStone());
-            System.out.println("Next stone is: " + g.getNextStone());
-            System.out.println("Next pattern is: \n" + g.getNextStone().getPatternString());
-            g.update();
+//        if (args.length == 1 && args[0].equals("cli")) {
+//        }
+
+        while(true){
             System.out.println("Board after update");
             System.out.println(g.board.withStone());
-            System.out.println("Next stone is: " + g.getNextStone());
-            System.out.println("Next pattern is: \n" + g.getNextStone().getPatternString());
-            return;
+            System.out.println(g.getNextStone().getPosition());
+
+            g.update();
+            TimeUnit.SECONDS.sleep(1);
+
         }
         // Game with GUI
     }
@@ -25,22 +29,23 @@ public class Game {
     }
 
     public void control(int direction) {
-        if (direction == -1)
-            board.rotateNext();
-        else
+        if (direction == -1) {
+            board.rotateNextStone();
+        } else {
             board.control(direction);
+        }
     }
 
-    Stone getNextStone(){
-        return getBoard().getNext();
+    public Stone getNextStone() {
+        return getBoard().getNextStone();
     }
 
-    void update() {
+    public void update() {
+        board.update();
         if (board.hasCollided()) {
             int rows = board.removeRows();
             score += rows * 100;
-            board.next();
+            getNextStone();
         }
-        board.update();
     }
 }

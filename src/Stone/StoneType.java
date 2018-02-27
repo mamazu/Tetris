@@ -1,4 +1,6 @@
-package tools;
+package Stone;
+
+import tools.Pattern;
 
 import java.util.Random;
 

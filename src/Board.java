@@ -1,118 +1,124 @@
+import Stone.Stone;
+import tools.Movement;
 import tools.Pattern;
-
 import java.awt.*;
 
-class Board extends Pattern {
+
+class Board {
     public static final int HEIGHT = 20;
     public static final int WIDTH = 10;
 
-    private Stone next;
-    private Point movement = new Point(0, 1);
+    private Stone nextStone;
+    private Pattern board;
+    private Movement movement = Movement.MOVE_NOT;
 
     Board() {
-        this(Board.WIDTH, Board.HEIGHT);
+        board = new Pattern(Board.WIDTH, Board.HEIGHT);
     }
 
     Board(int width, int height) {
-        super(width, height);
-        if (width * height < 1) {
-            pattern = new boolean[Board.HEIGHT * Board.WIDTH];
-            setWidth(Board.WIDTH);
-        }
-    }
-
-    void update() {
-        if (next.position.x == 0 && movement.x == -1 || next.getDimension().getWidth() == getWidth() - 1 && movement.x == 1) {
-            movement.x = 0;
-        }
+        board = new Pattern(width, height);
     }
 
     void control(int direction) {
         switch (direction) {
             case 0:
-                //up: immediate down
-                movement.setLocation(0, pattern.length / getWidth() + 1);
+                movement = Movement.MOVE_ALL_THE_WAY_DOWN;
                 return;
             case 1:
-                //right
-                movement.setLocation(1, 1);
+                movement = Movement.MOVE_RIGHT;
                 return;
             case 2:
-                movement.setLocation(0, 2);
+                movement = Movement.MOVE_DOWN;
                 return;
             case 3:
-                movement.setLocation(-1, 1);
+                movement = Movement.MOVE_LEFT;
                 return;
             default:
+                movement = Movement.MOVE_NOT;
                 System.err.println("Invalid direction");
         }
     }
 
-    private boolean stoneCollides(int dy) {
-        System.err.println("Must be implemented");
-        // boolean[][] pattern = next.getPattern();
-        // for (int y = 0; y < pattern.length; y++) {
-        //     for (int x = 0; x < pattern[y].length; x++) {
-        //         if (!pattern[y][x]) continue;
-        //         int index = index(next.position) + index(x, y + dy);
-        //         if (board[index] || (y + dy > board.length / width))
-        //             return true;
-        //     }
-        // }
-        return false;
+    private void doMove() {
+        doMove(this.movement);
     }
 
-    public Stone getCurrent() {
-        return next;
+    private void doMove(Movement movement) {
+        switch (movement) {
+            case MOVE_LEFT:
+                if (!stoneCollides(new Point(-1, 0)))
+                    nextStone.moveLeft();
+                break;
+            case MOVE_RIGHT:
+                if (!stoneCollides(new Point(1, 0)))
+                    nextStone.moveRight();
+                break;
+            case MOVE_DOWN:
+                if (!stoneCollides(new Point(0, 1))) {
+                    nextStone.moveDown();
+                }
+                break;
+            case MOVE_ALL_THE_WAY_DOWN:
+                moveStoneToTheBottom();
+                break;
+            case MOVE_NOT:
+                break;
+        }
     }
 
-    void next() {
-        Stone next = new Stone();
-        next.position = new Point((getWidth() - next.getWidth()) / 2, 0);
-        this.next = next;
+    private void moveStoneToTheBottom() {
+        while (!stoneCollides(new Point(0, 1))) {
+            nextStone.moveDown();
+        }
     }
 
-    public Stone getNext() {
-        if(next == null)
-            next();
-        return next;
+    private boolean stoneCollides(Point movement) {
+        Pattern nextStonePosition = Pattern.addPadding(nextStone.getWithOffset(), movement);
+        return Pattern.and(nextStonePosition, board);
+    }
+
+    Dimension getDimension() {
+        return board.getDimension();
+    }
+
+    Stone getNextStone() {
+        if (nextStone == null) {
+            Stone next = new Stone();
+            next.setPosition(new Point((board.getWidth() - next.getWidth()) / 2, 0));
+            this.nextStone = next;
+        }
+        return nextStone;
     }
 
     boolean hasCollided() {
-        return next == null;
+        if (stoneCollides(new Point(0, 0))) {
+            nextStone = null;
+            System.out.println("New the stone has collided");
+        }
+        return nextStone == null;
     }
 
-    void rotateNext() {
-        next.rotate();
+    void rotateNextStone() {
+        nextStone.rotate();
     }
 
     int removeRows() {
-        int removed = 0;
-        int width = getWidth();
-        int max = pattern.length / width;
-        for (int i = 0; i < max; i++) {
-            // Checks if the row has to be removed
-            boolean toRemove = true;
-            for (int j = 0; j < width; j++) {
-                if (pattern[j + i * width]) continue;
-                toRemove = false;
-            }
-            if (!toRemove) continue;
-            removed += 1;
-            // Copies the next lines over and fills the rest with false
-            for (int otherLines = i; otherLines < max; otherLines++)
-                for (int j = 0; j < width; j++) {
-                    pattern[j + otherLines * width] = (otherLines + 1) * width < max && pattern[j + (otherLines + 1) * width];
-                }
-            max -= 1;
-        }
-        return removed;
+        return 0;
+    }
+
+    void update() {
+        doMove();
+        doMove(Movement.MOVE_DOWN);
+
+        nextStone.constrain(new Dimension(Board.WIDTH, Board.HEIGHT));
     }
 
     Pattern withStone() {
-        if (next == null) {
-            return this;
+        if (nextStone == null) {
+            getNextStone();
         }
-        return Pattern.add((Pattern) next, (Pattern) this);
+        Pattern withOffset = Pattern.addPadding(nextStone, nextStone.getPosition());
+        return Pattern.add(withOffset, board);
     }
 }

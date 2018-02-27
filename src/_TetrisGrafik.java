@@ -33,8 +33,8 @@ public class _TetrisGrafik{
 		for(int i=0; i<y; i++){
 			for(int j=0; j<x; j++){
 				//Grafik.square(Abstand +  (Feld_Breite / 2) + Feld_Breite * j, 585 - (Abstand + (Feld_Breite / 2) + Feld_Breite * i), Feld_Breite / 2);	//x,y,r
-				color = muster.get(j, i) ? Color.BLACK : Color.WHITE;
-				FaerbeFeld(Grafik, x, y, Abstand, j, i, color);
+				//color = muster.get(j, i) ? Color.BLACK : Color.WHITE;
+				//FaerbeFeld(Grafik, x, y, Abstand, j, i, color);
 
 			}
 		}
