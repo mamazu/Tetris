@@ -20,31 +20,31 @@ public class Grafik extends Canvas{
     private static final int HEIGHT = 585;
     private String Titel = "Tetris";
     
-    private JFrame frame;
+    
 
     
     public Grafik(){
-        Dimension size = new Dimension(WIDTH, HEIGHT);
-        setPreferredSize(size);
-        frame = new JFrame();
-        frame.setResizable(false);
-        frame.setTitle(Titel);
-        frame.add(this);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);        
+    
     }
     
     public static int getWIDTH(){
         return Grafik.WIDTH;
     }
     
-    public JFrame getJFrame(){
-        return frame;
+    public static int getHEIGHT(){
+        return Grafik.HEIGHT;
     }
     
+    
     public void render(){    
+    }
+    
+    public void setTitel(String Titel){
+        this.Titel = Titel;
+    }
+    
+    public String getTitel(){
+        return this.Titel;
     }
     
     public static void drawStringMitte(Graphics g, String S, int x, int y){

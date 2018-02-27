@@ -5,8 +5,10 @@ import Input.Maus;
 import Input.Tastatur;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import javax.swing.JFrame;
 
 
 /*
@@ -22,9 +24,10 @@ import java.awt.image.BufferStrategy;
 public class Spiel extends Canvas implements Runnable{
     private Grafik g;
     private Hauptmenue hm;
-    
     private final Maus maus = new Maus();
     private final Tastatur tastatur = new Tastatur();
+    
+    private JFrame frame;
 
     private Thread thread;
     
@@ -37,6 +40,18 @@ public class Spiel extends Canvas implements Runnable{
     
     public Spiel(){
         g = new Grafik();
+        
+        Dimension size = new Dimension(Grafik.getWIDTH(), Grafik.getHEIGHT());
+        setPreferredSize(size);
+        frame = new JFrame();
+        frame.setResizable(false);
+        frame.setTitle(g.getTitel());
+        frame.add(this);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);    
+        
         hm = new Hauptmenue(Grafik.getWIDTH());
         addMouseListener(maus);
         addMouseMotionListener(maus);
@@ -50,7 +65,7 @@ public class Spiel extends Canvas implements Runnable{
     }
     
     public void mausUpdate(){
-        
+        hm.mausUpdate(maus);
     }
     
     public void render(){
@@ -60,6 +75,9 @@ public class Spiel extends Canvas implements Runnable{
             return;
         }
         Graphics g = bs.getDrawGraphics();
+        
+        hm.render(g);
+        
         g.setColor(Color.WHITE);
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);

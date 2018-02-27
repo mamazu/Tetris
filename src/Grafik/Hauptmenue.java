@@ -32,11 +32,12 @@ public class Hauptmenue {
     }
     
     public int mausUpdate(Maus m){
+        boolean ck = m.getMaustasteStatus(1);
         Spielen.mausUpdate(m);
         Bestenliste.mausUpdate(m);
         Steuerung.mausUpdate(m);
         Mitwirkende.mausUpdate(m);
-        Beenden.mausUpdate(m);
+        if(Beenden.mausUpdate(m) && ck)   System.exit(0);
         return 0;
     }
     
