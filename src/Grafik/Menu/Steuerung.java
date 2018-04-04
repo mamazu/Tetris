@@ -3,20 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Grafik;
+package Grafik.Menu;
 
+import Grafik.Grafik;
 import Input.Maus;
+import java.awt.Graphics;
 
 /**
  *
  * @author simon
  */
-public class Menue {
+public class Steuerung extends Menue{
+    
+    public Steuerung(int b){
+        
+    }
+    
     public int mausUpdate(Maus m){
         return 0;
     }
     
-    public void render(){
+    public void render(Graphics g, Grafik gg){
         
     }
 }

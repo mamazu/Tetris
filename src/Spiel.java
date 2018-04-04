@@ -1,6 +1,11 @@
 
 import Grafik.Grafik;
-import Grafik.Hauptmenue;
+import Grafik.Menu.Bestenliste;
+import Grafik.Menu.Hauptmenue;
+import Grafik.Menu.Menue;
+import Grafik.Menu.Mitwirkende;
+import Grafik.Menu.Spielen;
+import Grafik.Menu.Steuerung;
 import Input.Maus;
 import Input.Tastatur;
 import java.awt.Canvas;
@@ -23,9 +28,10 @@ import javax.swing.JFrame;
  */
 public class Spiel extends Canvas implements Runnable{
     private Grafik g;
-    private Hauptmenue hm;
+    private Menue hm;
     private final Maus maus = new Maus();
     private final Tastatur tastatur = new Tastatur();
+    private boolean ck = false;
     
     private JFrame frame;
 
@@ -64,8 +70,20 @@ public class Spiel extends Canvas implements Runnable{
         
     }
     
+    
     public void mausUpdate(){
-        hm.mausUpdate(maus);
+        int nm = hm.mausUpdate(maus);
+        if(ck)  nm = -1;
+        if(!maus.getMaustasteStatus(1)) this.ck = false;
+        //System.out.println(nm);
+        switch(nm){
+            case 0: this.hm = new Hauptmenue(Grafik.getWIDTH());    this.ck =true;    break;
+            case 1: this.hm = new Spielen(Grafik.getWIDTH());   this.ck =true;  break;
+            case 2: this.hm = new Bestenliste(Grafik.getWIDTH());   this.ck =true;  break;
+            case 3: this.hm = new Steuerung(Grafik.getWIDTH()); this.ck =true;  break;
+            case 4: this.hm = new Mitwirkende(Grafik.getWIDTH());   this.ck =true;  break;
+            case 5: System.exit(0);
+        }
     }
     
     public void render(){
@@ -76,7 +94,7 @@ public class Spiel extends Canvas implements Runnable{
         }
         Graphics g = bs.getDrawGraphics();
         
-        hm.render(g);
+        hm.render(g, this.g);
         
         g.setColor(Color.WHITE);
         g.clearRect(0, 0, WIDTH, HEIGHT);

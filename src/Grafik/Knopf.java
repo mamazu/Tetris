@@ -45,6 +45,7 @@ public class Knopf {
         this(x, y, xx, yy, T, Hg, Color.BLACK, Color.BLACK);
     }
     
+    //Hintgrund weiß; Rand schwarz, Schrift schwarz
     public Knopf(int x, int y, int xx, int yy, String T){
         this(x, y, xx, yy, T, Color.WHITE, Color.BLACK, Color.BLACK);
     }
@@ -84,7 +85,7 @@ public class Knopf {
         xx = this.x - breit/2;
         yy = this.y + hoch/1;
         String T;
-        if(this.hover)  T = this.Hover;
+        if(this.hover && this.aktiv)  T = this.Hover;
         else            T = this.Text;
         g.drawString(T, xx, yy);
            
