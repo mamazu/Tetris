@@ -4,7 +4,7 @@ import Stone.Stone;
 import java.awt.*;
 
 
-class Board {
+public class Board {
     public static final int HEIGHT = 20;
     public static final int WIDTH = 10;
 
@@ -12,15 +12,15 @@ class Board {
     private Pattern board;
     private Movement movement = Movement.MOVE_NOT;
 
-    Board() {
+    public Board() {
         board = new Pattern(Board.WIDTH, Board.HEIGHT);
     }
 
-    Board(int width, int height) {
+    public Board(int width, int height) {
         board = new Pattern(width, height);
     }
 
-    void control(int direction) {
+    public void control(int direction) {
         switch (direction) {
             case 0:
                 movement = Movement.MOVE_ALL_THE_WAY_DOWN;
@@ -78,11 +78,11 @@ class Board {
         return Pattern.and(nextStonePosition, board);
     }
 
-    Dimension getDimension() {
+    public Dimension getDimension() {
         return board.getDimension();
     }
 
-    Stone getNextStone() {
+    public Stone getNextStone() {
         if (nextStone == null) {
             Stone next = new Stone();
             next.setPosition(new Point((board.getWidth() - next.getWidth()) / 2, 0));
@@ -91,7 +91,7 @@ class Board {
         return nextStone;
     }
 
-    boolean hasCollided() {
+    public boolean hasCollided() {
         if (stoneCollides(new Point(0, 0))) {
             nextStone = null;
             System.out.println("New the stone has collided");
@@ -99,22 +99,22 @@ class Board {
         return nextStone == null;
     }
 
-    void rotateNextStone() {
+    public void rotateNextStone() {
         nextStone.rotate();
     }
 
-    int removeRows() {
+    public int removeRows() {
         return 0;
     }
 
-    void update() {
+    public void update() {
         doMove();
         doMove(Movement.MOVE_DOWN);
 
         nextStone.constrain(new Dimension(Board.WIDTH, Board.HEIGHT));
     }
 
-    Pattern withStone() {
+    public Pattern withStone() {
         if (nextStone == null) {
             getNextStone();
         }
