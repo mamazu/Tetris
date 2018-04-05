@@ -1,6 +1,6 @@
+package tools;
+
 import Stone.Stone;
-import tools.Movement;
-import tools.Pattern;
 import java.awt.*;
 
 

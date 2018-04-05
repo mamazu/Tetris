@@ -5,6 +5,7 @@
  */
 package Grafik.Menu;
 
+import tools.Board;
 import Grafik.Grafik;
 import Input.Maus;
 import java.awt.Graphics;
@@ -15,12 +16,15 @@ import java.awt.Graphics;
  */
 public class Spielen extends Menue{
     
+    private Board Brett;
+    private int b;
+    
     public Spielen(int b){
-        
+        this.b = b;
     }
     
     public int mausUpdate(Maus m){
-        return 0;
+        return -1;
     }
     
     public void render(Graphics g, Grafik gg){

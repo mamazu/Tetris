@@ -18,7 +18,7 @@ import java.awt.Graphics;
  *
  * @author simon
  */
-public class Bestenliste extends Menue{
+public final class Bestenliste extends Menue{
     
     private Knopf hm;
     private Highscore hs;
@@ -38,10 +38,13 @@ public class Bestenliste extends Menue{
     }
     
     public void render(Graphics g, Grafik gg){
-        Grafik.clear(g);
+        Grafik.clear(g);    //Init
+        
+        //Tetris-Ueberschrift
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.PLAIN, 50));
         Grafik.drawStringMitte(g, "Tetris", b/2, 100);
+        
         hm.render(g);
         
         //Highscore-Texte
@@ -52,6 +55,7 @@ public class Bestenliste extends Menue{
         Grafik.drawStringRechts(g, "Spieler", x_off, y_off);
         Grafik.drawStringLinks(g, "Punkte", this.b - x_off, y_off);
         Grafik.drawStringLinks(g, "#", x_off - 7, y_off);
+        g.setFont(new Font("Arial", Font.PLAIN, 12));
         int abst = 20;
         for(int i=0; i<10; i++){
             Grafik.drawStringLinks(g, (i+1) + ".", x_off - 7, y_off + abst * (i+1));

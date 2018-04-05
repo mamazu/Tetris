@@ -1,3 +1,4 @@
+import tools.Board;
 import Stone.Stone;
 
 import java.util.concurrent.TimeUnit;
