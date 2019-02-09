@@ -78,7 +78,7 @@ public class Spiel extends Canvas implements Runnable{
         //System.out.println(nm);
         switch(nm){
             case 0: this.hm = new Hauptmenue(Grafik.getWIDTH());    this.ck =true;    break;
-            case 1: this.hm = new Spielen(Grafik.getWIDTH());   this.ck =true;  break;
+            case 1: this.hm = new Spielen(Grafik.getWIDTH(), Grafik.getHEIGHT());   this.ck =true;  break;
             case 2: this.hm = new Bestenliste(Grafik.getWIDTH());   this.ck =true;  break;
             case 3: this.hm = new Steuerung(Grafik.getWIDTH()); this.ck =true;  break;
             case 4: this.hm = new Mitwirkende(400);   this.ck =true;  break;

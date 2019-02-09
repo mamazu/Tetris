@@ -16,7 +16,7 @@ import java.awt.Graphics;
  */
 public class Grafik extends Canvas{
     private static final int WIDTH = 400;
-    private static final int HEIGHT = 585;
+    private static final int HEIGHT = 585;      //orig 585
     private String Titel = "Tetris";
     
     
@@ -73,6 +73,6 @@ public class Grafik extends Canvas{
     
     public static void clear(Graphics g){
         g.setColor(Color.WHITE);
-        g.fillRect(0, 0, 400, 585);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
     }
 }
