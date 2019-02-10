@@ -5,6 +5,7 @@
  */
 package Grafik.Menu;
 
+import Exceptions.FeldgroesseFalschException;
 import tools.Board;
 import Grafik.Grafik;
 import Input.Maus;
@@ -51,28 +52,27 @@ public class Spielen extends Menue{
         g.setFont(new Font("Arial", Font.PLAIN, 50));
         Grafik.drawStringMitte(g, "Tetris", b/2, 60);
         
-        g.drawRect(175, 110, 150, 66);  //Punkte
-        g.drawRect(80, 110, 66, 66);    //nächster Stein
+        g.drawRect(260, 110, 126, 33);  //Punkte
+        g.setFont(new Font("Arial", Font.PLAIN, 18));
+        Grafik.drawStringMitte(g, "0999999990", 323, 127);
+        //g.drawRect(80, 110, 66, 66);    //nächster Stein
         
         //Spielfeld
         
-        int rand = 50;
-        int xx = 190;
-        g.drawRect(rand, xx, this.Fenster_Breite-2*rand, this.Fenster_Hoehe-xx-rand);
+        // => Breite: 300, Höhe: 345
         
-        int bb = this.Fenster_Breite-2*rand;
-        int hh = this.Fenster_Hoehe-xx-rand;
-        int fff = Math.max((int) bb/Brett.getDimension().width, (int) hh/Brett.getDimension().height);
+        //g.drawRect(45, 100, 200, 400);
         
-        for(int i=0; i< Brett.getDimension().width; i++){
-            for(int j=0; j < Brett.getDimension().height; j++){
-                g.setColor(Feld[j][i]);
-                //g.fillRect(rand + i * ( (int) bb/Brett.getDimension().width), xx + j * ((int) hh/Brett.getDimension().height), (int) bb/Brett.getDimension().width, (int) hh/Brett.getDimension().height);
-                g.fillRect(rand + i * (fff), xx + j * (fff), fff, fff);
+        assert Brett.getDimension().width == 10 && Brett.getDimension().height ==20: "Dimensionen des Spielbrettes passen nicht zur GUI!";
+        //if(Brett.getDimension().width != 10 || Brett.getDimension().height != 20)   throw new FeldgroesseFalschException("Die Feldgroesse muss 20x10 betragen!");
+        
+        for(int i=0; i<20; i++){
+            for(int j=0; j<10; j++){
+                g.setColor(Feld[i][j]);
+                g.fillRect(45 + j * 20, 100 + i * 20, 20, 20);
                 g.setColor(Color.BLACK);
-                //g.drawRect(rand + i * ( (int) bb/Brett.getDimension().width), xx + j * ((int) hh/Brett.getDimension().height), (int) bb/Brett.getDimension().width, (int) hh/Brett.getDimension().height);
-                g.drawRect(rand + i * (fff), xx + j * (fff), fff, fff);
-            }   
+                g.drawRect(45+j*20, 100+i*20, 20, 20);
+            }
         }
         
     }
